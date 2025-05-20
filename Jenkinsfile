@@ -6,7 +6,7 @@ pipeline {
     }
 
     triggers {
-        cron('* * * * *') // Every 1 minute
+        pollSCM('*/1 * * * *') // Poll Git repository every 1 minute
     }
 
     stages {
