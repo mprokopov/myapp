@@ -10,6 +10,11 @@ pipeline {
     }
 
     stages {
+        stage('Unit Test') {
+            steps {
+                sh "go test -v ./..."
+            }
+        }
         stage('Build') {
             steps {
                 sh "go build main.go"
