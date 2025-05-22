@@ -27,7 +27,7 @@ pipeline {
                                                    usernameVariable: 'ssh_user')]) {
                     sh """
 
-cat ${ssh_key}
+chmod +x main
 
 scp -o StrictHostKeyChecking=no -i ${ssh_key} main ${ssh_user}@target:
 """
