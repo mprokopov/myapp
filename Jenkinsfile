@@ -22,9 +22,17 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh """
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null main 172.16.0.3:/home/laborant/
+                withCredentials([sshUserPrivateKey(credentialsId: 'target-ssh-key',
+                                                   keyFileVariable: 'ssh_key',
+                                                   usernameVariable: 'ssh_user')]) {
+                    sh """
+
+cat ${ssh_key}
+
+scp main ${ssh_user}@target: -i ${ssh_key} -o StrictHostKeyChecking=no
 """
+
+}
             }
         }
     }
