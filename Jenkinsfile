@@ -23,11 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-mkdir -p ~/.ssh
-
-ssh-keyscan 172.16.0.3 >> ~/.ssh/known_hosts
-
-scp main 172.16.0.3:/home/laborant/
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null main 172.16.0.3:/home/laborant/
 """
             }
         }
