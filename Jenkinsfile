@@ -29,7 +29,10 @@ pipeline {
 
 chmod +x main
 
-scp -o StrictHostKeyChecking=no -i ${ssh_key} main ${ssh_user}@target:
+mkdir -p ~/.ssh
+ssh-keyscan 172.16.0.3 >> ~/.ssh/known_hosts
+
+scp -i ${ssh_key} main ${ssh_user}@target:
 """
 
 }
