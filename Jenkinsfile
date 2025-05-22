@@ -22,11 +22,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "
+                sh """
 mkdir -p ~/.ssh
+
 ssh-keyscan 172.16.0.3 >> ~/.ssh/known_hosts
 
-scp main 172.16.0.3:/home/laborant/"
+scp main 172.16.0.3:/home/laborant/
+"""
             }
         }
     }
