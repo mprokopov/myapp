@@ -29,7 +29,7 @@ pipeline {
 
 cat ${ssh_key}
 
-scp -o StrictHostKeyChecking=no main ${ssh_user}@target: -i ${ssh_key}
+scp -o StrictHostKeyChecking=no -i ${ssh_key} main ${ssh_user}@target:
 """
 
 }
