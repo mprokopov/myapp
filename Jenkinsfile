@@ -30,7 +30,7 @@ pipeline {
 chmod +x main
 
 mkdir -p ~/.ssh
-ssh-keyscan 172.16.0.3 >> ~/.ssh/known_hosts
+ssh-keyscan target >> ~/.ssh/known_hosts
 
 scp -i ${ssh_key} main ${ssh_user}@target:
 """
