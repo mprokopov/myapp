@@ -32,7 +32,7 @@ chmod +x main
 mkdir -p ~/.ssh
 ssh-keyscan target >> ~/.ssh/known_hosts
 
-ansible-playbook --inventory hosts.ini playbook.yaml
+ansible-playbook --inventory hosts.ini playbook.yaml --key-file=${ssh_key}
 """
 
 }
