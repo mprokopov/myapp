@@ -19,3 +19,4 @@
         name: main.service
         daemon_reload: true
         state: started
+        enabled: True
