@@ -44,6 +44,8 @@ ssh -i ${ssh_key} laborant@target 'sudo mv /home/laborant/main /opt/main'
 
 ssh -i ${ssh_key} laborant@target 'sudo systemctl daemon-reload'
 
+ssh -i ${ssh_key} laborant@target 'sudo systemctl enable main.service'
+
 ssh -i ${ssh_key} laborant@target 'sudo systemctl start main.service'
 """
 
