@@ -22,7 +22,12 @@ pipeline {
         }
         stage('Docker Image') {
             steps {
-                sh "docker build ."
+                sh "docker build . --tag ttl.sh/myapp:1h"
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                sh "docker push ttl.sh/myapp:1h"
             }
         }
     }
