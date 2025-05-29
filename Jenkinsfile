@@ -30,5 +30,10 @@ pipeline {
                 sh "docker push ttl.sh/myapp:1h"
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh "kubectl apply -f pod.yaml"
+            }
+        }
     }
 }
