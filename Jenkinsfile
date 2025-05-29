@@ -32,7 +32,9 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                sh "kubectl apply -f pod.yaml"
+                withKubeConfig([credentialsId: 'kubernetes-token', serverUrl: 'https://k8s:6443']) {
+                    sh "kubectl apply -f pod.yaml"
+                }
             }
         }
     }
