@@ -40,7 +40,7 @@ jobs:
         export ssh_key="~/.ssh/mykey"
         export ssh_user="laborant"
         
-        ssh -i ${ssh_key} laborant@target 'sudo systemctl stop main.service'
+        ssh -i ${ssh_key} laborant@target 'sudo systemctl stop main.service || true'
         
         scp -i ${ssh_key} main ${ssh_user}@target:
         
