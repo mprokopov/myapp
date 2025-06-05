@@ -32,8 +32,7 @@ jobs:
         chmod +x main
   
         mkdir -p ~/.ssh
-        ssh-keyscan target >> ~/.ssh/known_hosts
-
+     
         echo "${{ secrets.TARGET_SSH_KEY }}" > ~/.ssh/mykey
 
         chmod 600 ~/.ssh/mykey
@@ -41,6 +40,8 @@ jobs:
         export ssh_key="~/.ssh/mykey"
         export ssh_user="${{ vars.SSH_USER }}"
         export host="${{ vars.TARGET_HOST }}"
+
+        ssh-keyscan ${host} >> ~/.ssh/known_hosts
         
         ssh -i ${ssh_key} ${ssh_user}@${host} 'sudo systemctl stop main.service || true'
         
