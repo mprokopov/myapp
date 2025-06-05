@@ -28,7 +28,7 @@ jobs:
       run: go build main.go
 
     - name: Deploy to staging environment
-      if: ${{ ! startsWith(github.ref, 'refs/main') }}
+      if: ${{ ! startsWith(github.ref, 'refs/heads/main') }}
       run: |
         chmod +x main
   
@@ -59,7 +59,7 @@ jobs:
         ssh -i ${ssh_key} ${ssh_user}@${host} 'sudo systemctl enable --now main.service'
 
     - name: Deploy to production environment
-      if: ${{ startsWith(github.ref, 'refs/main') }}
+      if: ${{ startsWith(github.ref, 'refs/heads/main') }}
       run: |
         chmod +x main
   
