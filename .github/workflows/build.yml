@@ -33,7 +33,7 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan target >> ~/.ssh/known_hosts
 
-        echo "${{ secrets.TARGET_SSH_KEY }}" > ~/.ssh/mykey"
+        echo "${{ secrets.TARGET_SSH_KEY }}" > ~/.ssh/mykey
 
         export ssh_key = "~/.ssh/mykey"
         export ssh_user = "laborant"
