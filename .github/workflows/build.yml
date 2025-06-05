@@ -38,20 +38,21 @@ jobs:
         chmod 600 ~/.ssh/mykey
 
         export ssh_key="~/.ssh/mykey"
-        export ssh_user="laborant"
+        export ssh_user="${{ vars.SSH_USER }}"
+        export host="${{ vars.TARGET_HOST }}"
         
         ssh -i ${ssh_key} laborant@target 'sudo systemctl stop main.service || true'
         
-        scp -i ${ssh_key} main ${ssh_user}@target:
+        scp -i ${ssh_key} main ${ssh_user}@{host}:
         
-        scp -i ${ssh_key} main.service ${ssh_user}@target:
+        scp -i ${ssh_key} main.service ${ssh_user}@{host}:
         
-        ssh -i ${ssh_key} laborant@target 'sudo mv /home/laborant/main.service /etc/systemd/system/main.service'
+        ssh -i ${ssh_key} ${ssh_user}@{host} 'sudo mv /home/laborant/main.service /etc/systemd/system/main.service'
         
-        ssh -i ${ssh_key} laborant@target 'sudo mv /home/laborant/main /opt/main'
+        ssh -i ${ssh_key} ${ssh_user}@{host} 'sudo mv /home/laborant/main /opt/main'
         
-        ssh -i ${ssh_key} laborant@target 'sudo systemctl daemon-reload'
+        ssh -i ${ssh_key} ${ssh_user}@{host} 'sudo systemctl daemon-reload'
         
-        ssh -i ${ssh_key} laborant@target 'sudo systemctl enable --now main.service'
+        ssh -i ${ssh_key} ${ssh_user}@{host} 'sudo systemctl enable --now main.service'
 
 
