@@ -41,7 +41,7 @@ jobs:
         export ssh_user="${{ vars.SSH_USER }}"
         export host="${{ vars.TARGET_HOST }}"
         
-        ssh -i ${ssh_key} ${user}@${host} 'sudo systemctl stop main.service || true'
+        ssh -i ${ssh_key} ${ssh_user}@${host} 'sudo systemctl stop main.service || true'
         
         scp -i ${ssh_key} main ${ssh_user}@${host}:
         
